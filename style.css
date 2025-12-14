@@ -1,0 +1,349 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.navbar{
+    position:absolute;
+    width:100%;
+    padding:18px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#fff;
+    z-index:10;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-box{
+    width:38px;
+    height:38px;
+    background:linear-gradient(45deg,#ff9800,#ff3d00);
+    border-radius:10px;
+}
+
+nav a{
+    margin:0 14px;
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+}
+
+nav a.active{
+    color:#ffb300;
+}
+
+.social a{
+    margin-left:8px;
+    color:#000;
+    background:#ffc107;
+    width:28px;
+    height:28px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.hero{
+    height:45vh;
+    background:linear-gradient(120deg,#0b0b2e,#1a0050);
+    position:relative;
+    overflow:hidden;
+}
+
+.neon-lines span{
+    position:absolute;
+    width:5px;
+    height:140%;
+    background:linear-gradient(to bottom,#ff006a,#ff5fa2);
+    box-shadow:0 0 16px #ff006a;
+    top:-20%;
+}
+
+.neon-lines span:nth-child(1){right:6%}
+.neon-lines span:nth-child(2){right:11%}
+.neon-lines span:nth-child(3){right:16%}
+.neon-lines span:nth-child(4){right:21%}
+.neon-lines span:nth-child(5){right:26%}
+
+.content{
+    display:flex;
+    gap:50px;
+    padding:70px 60px;
+    align-items:center;
+}
+
+.content-image img{
+    width:100%;
+    max-width:440px;
+    border-radius:8px;
+}
+
+.content-text h1{
+    font-size:40px;
+    margin-bottom:18px;
+}
+
+.content-text p{
+    font-size:16px;
+    line-height:1.7;
+    color:#555;
+}
+
+.cookie{
+    position:fixed;
+    bottom:10px;
+    left:10px;
+    background:#222;
+    color:#fff;
+    padding:10px 15px;
+    font-size:12px;
+    border-radius:5px;
+}
+
+.cookie a{
+    color:#00c3ff;
+}
+/* DIAGNOSA LAYOUT */
+.diagnosa-layout{
+    display:flex;
+    gap:50px;
+    padding:80px 60px;
+    background:#e0e0e0;
+    align-items:center;
+}
+
+.diagnosa-image img{
+    width:100%;
+    max-width:420px;
+    border-radius:12px;
+}
+
+.diagnosa-info h1{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.diagnosa-info p{
+    line-height:1.7;
+    color:#444;
+}
+
+.diagnosa-list{
+    margin-top:20px;
+    list-style:none;
+}
+
+.diagnosa-list li{
+    margin-bottom:10px;
+    padding-left:30px;
+    position:relative;
+}
+
+.diagnosa-list li::before{
+    content:"✔";
+    position:absolute;
+    left:0;
+    color:#d35400;
+    font-weight:bold;
+}
+
+/* FITUR GRID */
+.diagnosa-features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+    padding:60px;
+    background:#e0e0e0;
+}
+
+.feature-box{
+    background:#e0e0e0;
+    text-align:center;
+    padding:20px;
+}
+
+.feature-box span{
+    display:inline-block;
+    width:45px;
+    height:45p
+}
+
+/* PERTANYAAN DIAGNOSA */
+.diagnosa-question{
+    background:#e0e0e0;
+    padding:70px 20px;
+    text-align:center;
+}
+
+.diagnosa-question h2{
+    font-size:32px;
+    margin-bottom:30px;
+    color:#333;
+}
+
+/* BUTTON */
+.diagnosa-buttons{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+}
+
+.diagnosa-buttons button{
+    width:160px;
+    padding:14px 0;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-yes{
+    background:#27ae60;
+    color:#fff;
+}
+
+.btn-no{
+    background:#c0392b;
+    color:#fff;
+}
+
+.btn-yes:hover{
+    background:#219150;
+}
+
+.btn-no:hover{
+    background:#a93226;
+}
+/* ===== PARTNER STYLE ===== */
+.tree-partner{
+    padding:120px 60px 60px;
+    background:#f2f2f2;
+}
+
+.tree-partner h2{
+    margin-bottom:30px;
+}
+
+.partner-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:20px;
+}
+
+.partner-box{
+    background:#fff;
+    padding:25px;
+    text-align:center;
+    border-radius:14px;
+    font-weight:600;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* ===== HERO IMAGE ===== */
+.tree-hero{
+    background:#0b0b2e;
+    padding:40px 0;
+    display:flex;
+    justify-content:center;
+}
+
+.tree-hero img{
+    width:100%;
+    max-width:900px;
+    border-radius:16px;
+}
+
+/* ===== TREE DIAGRAM ===== */
+.tree-diagram{
+    padding:80px 60px;
+    background:#f2f2f2;
+}
+
+.tree-diagram h2{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.tree-flow{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:40px;
+}
+
+.tree-row{
+    display:flex;
+    gap:30px;
+}
+
+.tree-node{
+    background:#ffffff;
+    padding:18px 24px;
+    border-radius:10px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.1);
+    font-weight:600;
+}
+
+.tree-node.root{
+    background:#1a0050;
+    color:#fff;
+}
+
+.tree-node.leaf{
+    background:#f39c12;
+    color:#fff;
+}
+/* ===== PARTNERS ===== */
+.partners{
+    padding:120px 60px 60px;
+    background:#ffffff;
+}
+
+.partners h2{
+    font-size:28px;
+    margin-bottom:30px;
+}
+
+.partner-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+}
+
+.partner-card{
+    background:#f3f3f3;
+    height:100px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:18px;
+    color:#222;
+}
+
+/* ===== HERO IMAGE ===== */
+.hero-image{
+    background:#0b0b2e;
+    padding:0;
+}
+
+.hero-image img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    display:block;
+}
