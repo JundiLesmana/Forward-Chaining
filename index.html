@@ -15,17 +15,17 @@
     <h2>Sistem Pakar<br><span>Diagnosa Penyakit Mata</span></h2>
   </div>
 
- <nav>
+  <nav>
     <a href="index.html" class="active">Home</a>
     <a href="diagnosa.html">Diagnosa</a>
     <a href="about.html">About</a>
     <a href="diagram-tree.html">Diagram Tree</a>
-      <a href="G10.html">Implikasi</a>
-</nav>
+    <a href="G10.html">Implikasi</a>
+  </nav>
 
   <div class="social">
-    <a href="#">f</a>
-    <a href="#">x</a>
+    <a href="https://www.instagram.com/riprhman/">f</a>
+    <a href="https://www.instagram.com/Prabowo/">x</a>
     <a href="https://www.instagram.com/Jokowi/">ig</a>
   </div>
 </header>
@@ -39,53 +39,48 @@
 
 <section class="content">
   <div class="content-image">
-    <img src="assets/Seragam.jpg" alt="Content Image">
+    <img src="assets/Mata.jpg" alt="Content Image">
   </div>
   <div class="content-text">
-    <h1>PENGEMBANGAN SISTEM PAKAR UNTUK MENDIAKNOSIS PENYAKIT MATA BERBASIS WEB<br>DENGAN METODE FORWARD CHAINING</h1>
-    <p>
+    <h1>PENGEMBANGAN SISTEM PAKAR UNTUK MENDIAGNOSIS PENYAKIT MATA BERBASIS WEB<br>DENGAN METODE FORWARD CHAINING</h1>
+    <p><br>
       Kesehatan mata sangat penting, namun tidak semua daerah memiliki klinik mata dan pemeriksaan sering memakan waktu lama. Untuk membantu masyarakat mengenali penyakit mata khususnya penurunan penglihatan tanpa mata merah dibuatlah sistem web berbasis Forward Chaining.
     </p>
   </div>
 </section>
 
-<!-- Team section-->
-<section class="team-section animate-on-load">
-  <h2>Tim Pengembang</h2>
-  <div class="team-grid">
-    <div class="team-member member-card">
-      <img src="assets/jundi.jpeg" alt="Jundi Lesmana">
-      <h3>JUNDULLOH RIZKI ANANDA</h3>
-      <p>Ketua kelompok</p>
-    </div>
-    <div class="team-member member-card">
-      <img src="assets/adit.jpeg" alt="Adit">
-      <h3>ADITTIA RAMADHAN</h3>
-      <p>Anggota</p>
-    </div>
-    <div class="team-member member-card">
-      <img src="assets/Petrik.jpg" alt="Arif">
-      <h3>ARIF RAHMAN HAKIM</h3>
-      <p>Anggota</p>
-    </div>
-    <div class="team-member member-card">
-      <img src="assets/Petrik.jpg" alt="Alif">
-      <h3>ALIF MAS SASTRO NUGROHO</h3>
-      <p>Anggota</p>
-    </div>
-    <div class="team-member member-card">
-      <img src="assets/supri.jpg" alt="Supri">
-      <h3>SUPRIAN</h3>
-      <p>Anggota</p>
-    </div>
-  </div>
-</section>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <!-- Cookie banner -->
 <div class="cookie">
   By using this website, you automatically accept that we use cookies.
   <a href="privacy.html">privacy and cookies policy</a>.
 </div>
+
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+  <span class="theme-icon">🌙</span>
+</button>
+
+<script>
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+
+  function toggleTheme() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  }
+
+  function updateThemeIcon(theme) {
+    const icon = document.querySelector('.theme-icon');
+    icon.textContent = theme === 'light' ? '🌙' : '☀️';
+  }
+</script>
 
 </body>
 </html>

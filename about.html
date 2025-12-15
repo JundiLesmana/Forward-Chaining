@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistem Pakar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<header class="navbar">
+  <div class="logo">
+    <span class="logo-box"></span>
+    <h2>Sistem Pakar<br><span>Diagnosa Penyakit Mata</span></h2>
+  </div>
+
+ <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="diagnosa.html">Diagnosa</a>
+    <a href="about.html">About</a>
+    <a href="diagram-tree.html">Diagram Tree</a>
+      <a href="G10.html">Implikasi</a>
+</nav>
+
+  <div class="social">
+    <a href="#">f</a>
+    <a href="#">x</a>
+    <a href="https://www.instagram.com/Jokowi/">ig</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="neon-lines">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+</section>
+
+<!-- Team section-->
+<section class="team-section animate-on-load">
+  <h2>Tim Pengembang</h2>
+  <div class="team-grid">
+    <div class="team-member member-card">
+      <img src="assets/jundi.jpeg" alt="Jundi Lesmana">
+      <h3>JUNDULLOH RIZKI ANANDA</h3>
+      <p>Ketua kelompok</p>
+    </div>
+    <div class="team-member member-card">
+      <img src="assets/adit.jpeg" alt="Adit">
+      <h3>ADITTIA RAMADHAN</h3>
+      <p>Anggota</p>
+    </div>
+    <div class="team-member member-card">
+      <img src="assets/arip.jpeg" alt="Arif">
+      <h3>ARIF RAHMAN HAKIM</h3>
+      <p>Anggota</p>
+    </div>
+    <div class="team-member member-card">
+      <img src="assets/alip.jpg" alt="Alif">
+      <h3>ALIF MAS SASTRO NUGROHO</h3>
+      <p>Anggota</p>
+    </div>
+    <div class="team-member member-card">
+      <img src="assets/supri.jpg" alt="Supri">
+      <h3>SUPRIYAN</h3>
+      <p>Anggota</p>
+    </div>
+  </div>
+</section>
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+  <span class="theme-icon">🌙</span>
+</button>
+
+<script>
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+
+  function toggleTheme() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  }
+
+  function updateThemeIcon(theme) {
+    const icon = document.querySelector('.theme-icon');
+    icon.textContent = theme === 'light' ? '🌙' : '☀️';
+  }
+</script>
+</body>
+</html>

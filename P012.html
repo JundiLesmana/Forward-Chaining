@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnosa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <span class="logo-box"></span>
+        <h2>Sistem Pakar<br><span>Diagnosa Penyakit Mata</span></h2>
+    </div>
+    <nav>
+          <a href="//index.html"class="active">Home</a>
+        <a href="//diagnosa.html" class="active">Dignosa</a>
+        <a href="about.html" class="active">About</a>
+        <a href="diagram-tree.html"class="active">Diagram Tree</a>
+        <a href="G10.html">Implikasi</a>
+    </nav>
+</header>
+
+<section class="diagnosa-layout">
+
+    <div class="diagnosa-image">
+        <img src="assets/Retinopati Diabetes.jpg" alt="Diagnosa Image">
+    </div>
+
+<section class="diagnosa-question">
+    <h2>Anda mengalami penyakit Retinopati Diabetes Proliferatif</h2><br>
+<h3>Responden 12 : G01 > G15 > G04 > G14 > P012 </h3>
+
+</section>
+    <div class="diagnosa-info">
+        <h1>Diagnosa Sistem</h1>
+        <p>
+            Sistem diagnosa ini dirancang untuk membantu pengguna
+            dalam mengidentifikasi kondisi awal berdasarkan gejala
+            yang dipilih melalui pendekatan berbasis aturan dan data.
+        </p>
+        <ul class="diagnosa-list">
+            <li>Proses diagnosa cepat dan sistematis</li>
+            <li>Berbasis aturan dan logika sistem pakar</li>
+            <li>Mendukung pengambilan keputusan awal</li>
+            <li>Antarmuka sederhana dan mudah digunakan</li>
+        </ul>
+    </div>
+
+</section>
+
+<!-- ===== FITUR ===== -->
+<section class="diagnosa-features">
+    <div class="feature-box">
+        <span>✔</span>
+        <h4>Input Gejala</h4>
+        <p>Pengguna memilih gejala yang dialami.</p>
+    </div>
+    <div class="feature-box">
+        <span>✔</span>
+        <h4>Proses Diagnosa</h4>
+        <p>Sistem memproses data berdasarkan aturan.</p>
+    </div>
+    <div class="feature-box">
+        <span>✔</span>
+        <h4>Hasil Analisis</h4>
+        <p>Menampilkan hasil diagnosa awal.</p>
+    </div>
+    <div class="feature-box">
+        <span>✔</span>
+        <h4>Rekomendasi</h4>
+        <p>Saran tindakan lanjutan bagi pengguna.</p>
+    </div>
+    <div class="feature-box">
+        <span>✔</span>
+        <h4>Data Tersimpan</h4>
+        <p>Riwayat diagnosa dapat disimpan.</p>
+    </div>
+    <div class="feature-box">
+        <span>✔</span>
+        <h4>Berbasis AI</h4>
+        <p>Dapat dikembangkan dengan AI / Fuzzy.</p>
+    </div>
+</section>
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+  <span class="theme-icon">🌙</span>
+</button>
+
+<script>
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+
+  function toggleTheme() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  }
+
+  function updateThemeIcon(theme) {
+    const icon = document.querySelector('.theme-icon');
+    icon.textContent = theme === 'light' ? '🌙' : '☀️';
+  }
+</script>
+</body>
+</html>

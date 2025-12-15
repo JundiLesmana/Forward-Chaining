@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Header / Navbar -->
+  <!-- Navbar -->
   <header class="navbar">
     <div class="logo">
       <span class="logo-box"></span>
@@ -28,19 +28,18 @@
 
     <!-- Gambar Diagnosa -->
     <div class="diagnosa-image">
-      <img src="assets/ambatukam.jpg" alt="Ilustrasi Diagnosa Penyakit Mata" />
+      <img src="assets/eyes.jpg" alt="Ilustrasi Diagnosa Penyakit Mata" />
     </div>
 
     <!-- Pertanyaan Diagnosa -->
     <section class="diagnosa-question">
       <h2>Apakah penglihatan turun perlahan tanpa disertai mata memerah?</h2>
       <div class="diagnosa-buttons">
-        <a href="G10.html"><button class="btn-yes">Ya</button></a>
-        <a href="D13.html"><button class="btn-no">Tidak</button></a>
+        <a href="G01.html"><button class="btn-yes">Ya</button></a>
+        <a href="G04.html"><button class="btn-no">Tidak</button></a>
       </div>
     </section>
 
-    <!-- Info Sistem -->
     <div class="diagnosa-info">
       <h1>Bagaimana Sistem Ini Bekerja?</h1>
       <p>
@@ -60,19 +59,19 @@
       <h2>Contoh Hasil Diagnosa</h2>
       <div class="result-cards">
         <div class="result-card">
-          <img src="assets/diagramtree.jpg" alt="Katarak" />
-          <h3>Katarak</h3>
-          <p>Penglihatan kabur perlahan, tanpa nyeri atau kemerahan.</p>
+          <img src="assets/katarak toksik.jpg" alt="Katarak Toksik" />
+          <h3>Katarak Toksik</h3>
+          <p>Penglihatan Kabur atau Buram,Peningkatan rasa silau yang parah, terutama saat melihat lampu terang, lampu mobil, atau sinar matahari.</p>
         </div>
         <div class="result-card">
-          <img src="assets/content.jpg" alt="Glaukoma" />
-          <h3>Glaukoma</h3>
-          <p>Penglihatan menyempit, tekanan bola mata tinggi.</p>
+          <img src="assets/Retinopati Diabetes.jpg" alt="Retinopati Diabetes" />
+          <h3>Retinopati Diabetes</h3>
+          <p>Penglihatan yang tidak stabil, terkadang jelas dan terkadang kabur, Kesulitan melihat dengan jelas dalam kondisi cahaya redup atau gelap.</p>
         </div>
         <div class="result-card">
-          <img src="assets/ambatukam.jpg" alt="Degenerasi Makula" />
-          <h3>Degenerasi Makula</h3>
-          <p>Penglihatan sentral kabur, sering pada usia lanjut.</p>
+          <img src="assets/Katarak.jpg" alt="Katarak Sekunder" />
+          <h3>Katarak Sekunder</h3>
+          <p>Penurunan tajam dalam kemampuan melihat dalam kondisi cahaya redup.</p>
         </div>
       </div>
     </section>
@@ -112,6 +111,29 @@
     </section>
 
   </section>
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+  <span class="theme-icon">🌙</span>
+</button>
 
+<script>
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+
+  function toggleTheme() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  }
+
+  function updateThemeIcon(theme) {
+    const icon = document.querySelector('.theme-icon');
+    icon.textContent = theme === 'light' ? '🌙' : '☀️';
+  }
+</script>
 </body>
 </html>
