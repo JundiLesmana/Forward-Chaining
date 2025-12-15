@@ -5,12 +5,84 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Light Mode Colors */
+  --bg-primary: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --bg-secondary: #ffffff;
+  --text-primary: #2c3e50;
+  --text-secondary: #555;
+  --text-tertiary: #666;
+  --navbar-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --card-shadow-hover: rgba(0, 0, 0, 0.15);
+  --border-color: #ddd;
+  --hero-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Colors */
+  --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --bg-secondary: #0f3460;
+  --text-primary: #e8e8e8;
+  --text-secondary: #b8b8b8;
+  --text-tertiary: #a0a0a0;
+  --navbar-bg: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: rgba(0, 0, 0, 0.6);
+  --border-color: #2d4263;
+  --hero-bg: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #2c3e50;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: var(--text-primary);
+  background: var(--bg-primary);
   min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* THEME TOGGLE BUTTON */
+.theme-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-icon {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .theme-icon {
+  transform: rotate(180deg);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: linear-gradient(135deg, #ffd93d 0%, #ff9800 100%);
+  box-shadow: 0 8px 25px rgba(255, 217, 61, 0.4);
 }
 
 /* NAVBAR */
@@ -18,13 +90,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  background: var(--navbar-bg);
   padding: 1.2rem 3rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px var(--card-shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
 .logo {
@@ -128,15 +201,20 @@ nav a.active {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+[data-theme="dark"] .social a:hover {
+  color: #0a1929;
+}
+
 /* HERO SECTION */
 .hero {
   height: 200px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--hero-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  transition: background 0.3s ease;
 }
 
 .neon-lines {
@@ -150,7 +228,7 @@ nav a.active {
 .neon-lines span {
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #fff, transparent);
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.5), transparent);
   animation: neonMove 3s linear infinite;
   opacity: 0.5;
 }
@@ -177,15 +255,16 @@ nav a.active {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px var(--card-shadow);
+  transition: all 0.3s ease;
 }
 
 .content-image img {
   width: 100%;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px var(--card-shadow);
   transition: transform 0.3s ease;
 }
 
@@ -194,17 +273,19 @@ nav a.active {
 }
 
 .content-text h1 {
-  color: #1e3c72;
+  color: var(--text-primary);
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   line-height: 1.3;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
 .content-text p {
   font-size: 1.05rem;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.8;
+  transition: color 0.3s ease;
 }
 
 /* DIAGNOSA LAYOUT */
@@ -221,7 +302,7 @@ nav a.active {
 .diagnosa-image img {
   width: 100%;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px var(--card-shadow);
   transition: transform 0.3s ease;
 }
 
@@ -232,22 +313,23 @@ nav a.active {
 .diagnosa-question {
   text-align: center;
   padding: 2rem;
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 25px var(--card-shadow);
+  transition: all 0.3s ease;
 }
 
 .diagnosa-question:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 35px var(--card-shadow-hover);
 }
 
 .diagnosa-question h2 {
   margin-bottom: 2rem;
   font-size: 1.5rem;
-  color: #1e3c72;
+  color: var(--text-primary);
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .diagnosa-question h3 {
@@ -297,25 +379,28 @@ nav a.active {
 
 /* INFO SECTION */
 .diagnosa-info {
-  background: white;
+  background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px var(--card-shadow);
   grid-column: span 2;
+  transition: all 0.3s ease;
 }
 
 .diagnosa-info h1 {
-  color: #1e3c72;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   font-size: 2rem;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
 .diagnosa-info p {
   margin-bottom: 1.5rem;
   font-size: 1.05rem;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.8;
+  transition: color 0.3s ease;
 }
 
 .diagnosa-list {
@@ -328,7 +413,8 @@ nav a.active {
   padding-left: 2rem;
   position: relative;
   font-size: 1.05rem;
-  color: #444;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 .diagnosa-list li:before {
@@ -349,9 +435,10 @@ nav a.active {
 
 .diagnosa-results h2 {
   margin-bottom: 2rem;
-  color: #1e3c72;
+  color: var(--text-primary);
   font-size: 2rem;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
 .result-cards {
@@ -366,14 +453,14 @@ nav a.active {
   border: none;
   border-radius: 15px;
   padding: 1.5rem;
-  background: white;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: var(--bg-secondary);
+  box-shadow: 0 8px 25px var(--card-shadow);
   transition: all 0.3s ease;
 }
 
 .result-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 35px var(--card-shadow-hover);
 }
 
 .result-card img {
@@ -387,14 +474,16 @@ nav a.active {
 .result-card h3 {
   margin: 1rem 0 0.5rem;
   font-size: 1.2rem;
-  color: #1e3c72;
+  color: var(--text-primary);
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .result-card p {
   font-size: 0.95rem;
-  color: #666;
+  color: var(--text-tertiary);
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
 /* FEATURES */
@@ -407,17 +496,17 @@ nav a.active {
 }
 
 .feature-box {
-  background: white;
+  background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px var(--card-shadow);
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .feature-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 35px var(--card-shadow-hover);
 }
 
 .feature-box span {
@@ -429,29 +518,33 @@ nav a.active {
 
 .feature-box h4 {
   margin: 1rem 0 0.5rem;
-  color: #1e3c72;
+  color: var(--text-primary);
   font-size: 1.2rem;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .feature-box p {
-  color: #666;
+  color: var(--text-tertiary);
   font-size: 0.95rem;
+  transition: color 0.3s ease;
 }
 
 /* TEAM SECTION */
 .team-section {
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: var(--bg-primary);
   text-align: center;
+  transition: background 0.3s ease;
 }
 
 .team-section h2 {
-  color: #1e3c72;
+  color: var(--text-primary);
   margin-bottom: 3rem;
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 1px;
+  transition: color 0.3s ease;
 }
 
 .team-grid {
@@ -463,16 +556,16 @@ nav a.active {
 }
 
 .team-member {
-  background: white;
+  background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px var(--card-shadow);
   transition: all 0.3s ease;
 }
 
 .team-member:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 40px var(--card-shadow-hover);
 }
 
 .team-member img {
@@ -493,14 +586,16 @@ nav a.active {
 
 .team-member h3 {
   margin: 1rem 0 0.5rem;
-  color: #1e3c72;
+  color: var(--text-primary);
   font-size: 1.15rem;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .team-member p {
   font-size: 0.95rem;
-  color: #666;
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
 }
 
 /* COOKIE BANNER */
@@ -509,15 +604,16 @@ nav a.active {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
+  background: var(--bg-secondary);
   padding: 1rem 2rem;
   border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px var(--card-shadow);
   font-size: 0.9rem;
-  color: #333;
+  color: var(--text-primary);
   max-width: 600px;
   text-align: center;
   z-index: 999;
+  transition: all 0.3s ease;
 }
 
 .cookie a {
@@ -546,13 +642,14 @@ nav a.active {
   animation: fadeInUp 1s ease-out forwards;
 }
 
-/* privacy.html */
+/* PRIVACY PAGE STYLES */
 .privacy-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--hero-bg);
   color: white;
   padding: 4rem 2rem;
   text-align: center;
   animation: fadeInUp 1s ease-out;
+  transition: background 0.3s ease;
 }
 
 .privacy-header h1 {
@@ -570,27 +667,30 @@ nav a.active {
   max-width: 900px;
   margin: 3rem auto;
   padding: 3rem;
-  background: white;
+  background: var(--bg-secondary);
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px var(--card-shadow);
   animation: fadeInUp 1s ease-out;
   animation-delay: 0.3s;
+  transition: all 0.3s ease;
 }
 
 .privacy-content h2 {
-  color: #1e3c72;
+  color: var(--text-primary);
   margin: 2rem 0 1rem;
   font-size: 1.8rem;
   border-bottom: 3px solid #667eea;
   padding-bottom: 0.5rem;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .privacy-content p {
   margin-bottom: 1.5rem;
   line-height: 1.8;
   font-size: 1.05rem;
-  color: #555;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 .privacy-image {
@@ -599,7 +699,7 @@ nav a.active {
   margin: 2rem auto;
   display: block;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px var(--card-shadow);
   transition: transform 0.3s ease;
 }
 
@@ -608,11 +708,12 @@ nav a.active {
 }
 
 .contact-box {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: 15px;
   margin-top: 2rem;
   text-align: center;
+  transition: background 0.3s ease;
 }
 
 .contact-box a {
@@ -686,5 +787,16 @@ nav a.active {
 
   .privacy-header h1 {
     font-size: 2rem;
+  }
+
+  .theme-toggle {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .theme-icon {
+    font-size: 1.5rem;
   }
 }

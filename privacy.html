@@ -5,97 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kebijakan Privasi – Sistem Pakar</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .privacy-header {
-      background: linear-gradient(135deg, #2c3e50, #3498db);
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    .privacy-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .privacy-header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-
-    .privacy-content {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      animation: fadeInUp 1s ease-out;
-      animation-delay: 0.5s;
-    }
-
-    .privacy-content h2 {
-      color: #2c3e50;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid #3498db;
-      padding-bottom: 0.5rem;
-    }
-
-    .privacy-content p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .privacy-image {
-      width: 100%;
-      max-width: 600px;
-      margin: 2rem auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .privacy-image:hover {
-      transform: scale(1.02);
-    }
-
-    .contact-box {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-top: 2rem;
-      text-align: center;
-      animation: fadeInUp 1s ease-out;
-      animation-delay: 1s;
-    }
-
-    .contact-box a {
-      display: inline-block;
-      background: #2ecc71;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .contact-box a:hover {
-      background: #27ae60;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -146,6 +55,32 @@
       <a href="https://wa.me/6285775148262" target="_blank">Hubungi Kami via WhatsApp</a>
     </div>
   </div>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+    <span class="theme-icon">🌙</span>
+  </button>
+
+  <script>
+    // Check for saved theme preference or default to 'light' mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+
+    function toggleTheme() {
+      const theme = document.documentElement.getAttribute('data-theme');
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+
+    function updateThemeIcon(theme) {
+      const icon = document.querySelector('.theme-icon');
+      icon.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
+  </script>
 
 </body>
 </html>
