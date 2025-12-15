@@ -32,11 +32,7 @@
     <section class="diagnosa-question">
     <h2>Lakukan diagnosis pada power supply</h2><br>
 <h3>Responden 6 : G01 > G15 > G04 > G05 > G10 > G28 > P06</h3>
-
-
 </section>
-
-
     <div class="diagnosa-info">
         <h1>Diagnosa Sistem</h1>
         <p>
@@ -88,6 +84,29 @@
         <p>Dapat dikembangkan dengan AI / Fuzzy.</p>
     </div>
 </section>
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+  <span class="theme-icon">🌙</span>
+</button>
 
+<script>
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+
+  function toggleTheme() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  }
+
+  function updateThemeIcon(theme) {
+    const icon = document.querySelector('.theme-icon');
+    icon.textContent = theme === 'light' ? '🌙' : '☀️';
+  }
+</script>
 </body>
 </html>
