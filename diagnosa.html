@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diagnosa – Sistem Pakar Kerusakan Komputer</title>
+  <title>Diagnosa – Penyakit Mata</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,28 +12,28 @@
   <header class="navbar">
     <div class="logo">
       <span class="logo-box"></span>
-      <h2>Sistem Pakar<br><span>Diagnosa penyakit mata</span></h2>
+      <h2>Sistem Pakar<br><span>Diagnosa Penyakit Mata</span></h2>
     </div>
     <nav>
         <a href="index.html">Home</a>
-        <a href="diagnosa.html" class="active">Diagnosa</a>
-        <a href="about.html">About</a>
+        <a href="diagnosa.html">Diagnosa</a>
+        <a href="about.html" class="active">About</a>
         <a href="diagram-tree.html">Diagram Tree</a>
         <a href="G10.html">Implikasi</a>
-    </nav>
+</nav>
   </header>
 
   <!-- Diagnosa Section -->
   <section class="diagnosa-layout">
 
-    <!-- Main img -->
+    <!-- Gambar Diagnosa -->
     <div class="diagnosa-image">
-      <img src="assets/umpam.jpg " alt="Ilustrasi Diagnosa Komputer" />
+      <img src="assets/ambatukam.jpg" alt="Ilustrasi Diagnosa Penyakit Mata" />
     </div>
 
     <!-- Pertanyaan Diagnosa -->
     <section class="diagnosa-question">
-      <h2>Apakah Penglihatan turun perlahan tanpa disertai mata memerah </h2>
+      <h2>Apakah penglihatan turun perlahan tanpa disertai mata memerah?</h2>
       <div class="diagnosa-buttons">
         <a href="G10.html"><button class="btn-yes">Ya</button></a>
         <a href="D13.html"><button class="btn-no">Tidak</button></a>
@@ -44,36 +44,35 @@
     <div class="diagnosa-info">
       <h1>Bagaimana Sistem Ini Bekerja?</h1>
       <p>
-        Sistem diagnosa ini dirancang untuk membantu pengguna mengidentifikasi
-        kerusakan komputer berdasarkan gejala awal menggunakan logika
-        <strong>forward chaining</strong>.
+        Sistem ini membantu mengidentifikasi kemungkinan penyakit mata berdasarkan gejala awal
+        menggunakan pendekatan <strong>forward chaining</strong> dari sistem pakar.
       </p>
       <ul class="diagnosa-list">
         <li>Proses diagnosa cepat dan sistematis</li>
-        <li>Berbasis aturan dan logika sistem pakar</li>
-        <li>Mendukung pengambilan keputusan awal</li>
+        <li>Berbasis aturan medis dan logika sistem pakar</li>
+        <li>Mendukung keputusan awal sebelum ke dokter</li>
         <li>Antarmuka sederhana dan mudah digunakan</li>
       </ul>
     </div>
 
-    <!-- Hasil Diagnosa-->
+    <!-- Contoh Hasil Diagnosa -->
     <section class="diagnosa-results">
       <h2>Contoh Hasil Diagnosa</h2>
       <div class="result-cards">
         <div class="result-card">
-          <img src="assets/diagramtree.jpg" alt="Kerusakan RAM" />
-          <h3>Kerusakan RAM</h3>
-          <p>Gejala: Komputer restart terus, beep panjang</p>
+          <img src="assets/diagramtree.jpg" alt="Katarak" />
+          <h3>Katarak</h3>
+          <p>Penglihatan kabur perlahan, tanpa nyeri atau kemerahan.</p>
         </div>
         <div class="result-card">
-          <img src="assets/content.jpg" alt="Power Supply Rusak" />
-          <h3>Power Supply Rusak</h3>
-          <p>Gejala: Tidak ada respons saat dinyalakan</p>
+          <img src="assets/content.jpg" alt="Glaukoma" />
+          <h3>Glaukoma</h3>
+          <p>Penglihatan menyempit, tekanan bola mata tinggi.</p>
         </div>
         <div class="result-card">
-          <img src="assets/ambatukam.jpg" alt="Motherboard Error" />
-          <h3>Motherboard Error</h3>
-          <p>Gejala: LED menyala, tapi layar hitam</p>
+          <img src="assets/ambatukam.jpg" alt="Degenerasi Makula" />
+          <h3>Degenerasi Makula</h3>
+          <p>Penglihatan sentral kabur, sering pada usia lanjut.</p>
         </div>
       </div>
     </section>
