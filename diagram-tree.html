@@ -2,55 +2,587 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sistem Pakar</title>
+    <title>Sistem Pakar - Diagram Tree</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /*Base Styles*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --bg-secondary: #ffffff;
+            --text-primary: #2c3e50;
+            --navbar-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --node-bg: #ffffff;
+            --node-border: #667eea;
+            --line-color: #667eea;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --bg-secondary: #0f3460;
+            --text-primary: #e8e8e8;
+            --navbar-bg: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
+            --card-shadow: rgba(0, 0, 0, 0.4);
+            --node-bg: #0f3460;
+            --node-border: #667eea;
+            --line-color: #667eea;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--navbar-bg);
+            padding: 1.2rem 3rem;
+            box-shadow: 0 4px 20px var(--card-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+            .logo img:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-box {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .logo h2 {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .logo span {
+            font-size: 0.85rem;
+            color: #cbd5e0;
+            font-weight: 400;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        nav a.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* THEME TOGGLE */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .theme-icon {
+            font-size: 1.8rem;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: linear-gradient(135deg, #ffd93d 0%, #ff9800 100%);
+        }
+
+        .diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+        .tree-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+        }
+        .tree-node {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--node-bg);
+            border: 4px solid var(--node-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            position: relative;
+            opacity: 0;
+            transform: scale(0);
+            box-shadow: 0 8px 25px var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .tree-node.active {
+            animation: nodeAppear 0.6s ease-out forwards;
+        }
+
+        .tree-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+            border-color: #764ba2;
+        }
+
+        @keyframes nodeAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            60% {
+                transform: scale(1.15) rotate(10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .level {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            position: relative;
+        }
+
+        .level-2 {
+            gap: 150px;
+        }
+
+        .level-3 {
+            gap: 80px;
+        }
+
+        .connection {
+            position: absolute;
+            background: var(--line-color);
+            transform-origin: top;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .connection.active {
+            animation: lineGrow 0.5s ease-out forwards;
+        }
+
+        @keyframes lineGrow {
+            0% {
+                opacity: 0;
+                height: 0;
+            }
+            100% {
+                opacity: 1;
+                height: 100%;
+            }
+        }
+
+        .label {
+            position: absolute;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--node-border);
+            background: var(--node-bg);
+            padding: 0.3rem 0.7rem;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 2px 8px var(--card-shadow);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .label.active {
+            animation: labelFade 0.4s ease-out forwards;
+        }
+
+        @keyframes labelFade {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .svg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .svg-line {
+            stroke: var(--line-color);
+            stroke-width: 3;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            opacity: 0;
+        }
+
+        .svg-line.active {
+            animation: drawLine 0.8s ease-out forwards;
+        }
+
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+
+        .reset-btn {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .tree-node {
+                width: 70px;
+                height: 70px;
+                font-size: 0.9rem;
+            }
+
+            .level {
+                gap: 30px;
+            }
+
+            .level-2 {
+                gap: 80px;
+            }
+
+            .diagram-container {
+                padding: 2rem 1rem;
+            }
+
+            .reset-btn {
+                bottom: 90px;
+                right: 20px;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .theme-toggle {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- ===== Navbar ===== -->
+
 <header class="navbar">
-    <div class="logo">
-        <span class="logo-box"></span>
-        <h2>Sistem Pakar<br><span>Diagnosa Penyakit Mata</span></h2>
+  <div class="logo">
+    <img src="assets/logo kelas.jpg" alt="Logo Sistem Pakar">
+    <h2>Sistem Pakar<br><span>Diagnosa Penyakit Mata</span></h2>
+  </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="diagnosa.html">Dignosa</a>
+            <a href="about.html">About</a>
+            <a href="diagram-tree.html" class="active">Diagram Tree</a>
+            <a href="implikasi.html">Implikasi</a>
+        </nav>
+    </header>
+
+    <!-- Diagram Container -->
+    <div class="diagram-container">
+        <svg class="svg-container" id="svgLines"></svg>
+        
+        <div class="tree-wrapper" id="treeWrapper">
+            <div class="level">
+                <div class="tree-node" data-node="g001">G001</div>
+            </div>
+
+            <div class="level">
+                <div class="tree-node" data-node="g015">G015</div>
+            </div>
+
+            <div class="level level-2">
+                <div class="tree-node" data-node="p005">P005</div>
+                <div class="tree-node" data-node="g004">G004</div>
+            </div>
+
+            <div class="level level-2">
+                <div style="width: 100px;"></div>
+                <div class="tree-node" data-node="g014">G014</div>
+                <div class="tree-node" data-node="g005">G005</div>
+            </div>
+
+            <div class="level level-2">
+                <div style="width: 100px;"></div>
+                <div class="tree-node" data-node="p012">P012</div>
+                <div class="tree-node" data-node="g010">G010</div>
+            </div>
+
+            <div class="level">
+                <div class="tree-node" data-node="g028">G028</div>
+            </div>
+
+            <div class="level">
+                <div class="tree-node" data-node="p006">P006</div>
+            </div>
+        </div>
     </div>
 
-    <nav>
-          <a href="index.html"class="active">Home</a>
-        <a href="diagnosa.html" class="active">Dignosa</a>
-        <a href="about.html" class="active">About</a>
-        <a href="diagram-tree.html"class="active">Diagram Tree</a>
-        <a href="#">Implikasi</a>
+    <button class="reset-btn" onclick="resetAnimation()">🔄 Ulang Animasi</button>
+
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <script>
+        const nodes = document.querySelectorAll('.tree-node');
+        const svgContainer = document.getElementById('svgLines');
         
-    </nav>
-   
-</header>
+        // Define tree structure with connections and labels
+        const connections = [
+            { from: 'g001', to: 'g015', label: 'YA' },
+            { from: 'g015', to: 'p005', label: 'YA' },
+            { from: 'g015', to: 'g004', label: 'TIDAK' },
+            { from: 'g004', to: 'g014', label: 'YA' },
+            { from: 'g004', to: 'g005', label: 'TIDAK' },
+            { from: 'g014', to: 'p012', label: 'YA' },
+            { from: 'g005', to: 'g010', label: 'YA' },
+            { from: 'g010', to: 'g028', label: 'YA' },
+            { from: 'g028', to: 'p006', label: 'YA' }
+        ];
 
- <center>
-    <img src="assets/diagram-tree.jpg">
-</center>
-    <!-- Theme Toggle Button -->
-<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
-  <span class="theme-icon">🌙</span>
-</button>
+        // Create SVG lines with labels
+        function createSVGLines() {
+            connections.forEach(conn => {
+                const fromNode = document.querySelector(`[data-node="${conn.from}"]`);
+                const toNode = document.querySelector(`[data-node="${conn.to}"]`);
+                
+                if (fromNode && toNode) {
+                    const fromRect = fromNode.getBoundingClientRect();
+                    const toRect = toNode.getBoundingClientRect();
+                    const containerRect = svgContainer.getBoundingClientRect();
+                    
+                    const x1 = fromRect.left + fromRect.width / 2 - containerRect.left;
+                    const y1 = fromRect.top + fromRect.height - containerRect.top;
+                    const x2 = toRect.left + toRect.width / 2 - containerRect.left;
+                    const y2 = toRect.top - containerRect.top;
+                    
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', x1);
+                    line.setAttribute('y1', y1);
+                    line.setAttribute('x2', x2);
+                    line.setAttribute('y2', y2);
+                    line.classList.add('svg-line');
+                    line.setAttribute('data-connection', `${conn.from}-${conn.to}`);
+                    svgContainer.appendChild(line);
+                    
+                    // Create label
+                    if (conn.label) {
+                        const label = document.createElement('div');
+                        label.classList.add('label');
+                        label.textContent = conn.label;
+                        label.setAttribute('data-label', `${conn.from}-${conn.to}`);
+                        
+                        // Position label at midpoint of line
+                        const midX = (x1 + x2) / 2;
+                        const midY = (y1 + y2) / 2;
+                        
+                        label.style.position = 'absolute';
+                        label.style.left = `${midX}px`;
+                        label.style.top = `${midY}px`;
+                        label.style.transform = 'translate(-50%, -50%)';
+                        
+                        svgContainer.parentElement.appendChild(label);
+                    }
+                }
+            });
+        }
 
-<script>
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  updateThemeIcon(currentTheme);
+        // Animation sequence
+        const animationSequence = [
+            { node: 'g001', delay: 0 },
+            { node: 'g015', delay: 800, connection: 'g001-g015' },
+            { node: 'p005', delay: 1600, connection: 'g015-p005' },
+            { node: 'g004', delay: 1700, connection: 'g015-g004' },
+            { node: 'g014', delay: 2500, connection: 'g004-g014' },
+            { node: 'g005', delay: 2600, connection: 'g004-g005' },
+            { node: 'p012', delay: 3400, connection: 'g014-p012' },
+            { node: 'g010', delay: 3500, connection: 'g005-g010' },
+            { node: 'g028', delay: 4300, connection: 'g010-g028' },
+            { node: 'p006', delay: 5100, connection: 'g028-p006' }
+        ];
 
-  function toggleTheme() {
-    const theme = document.documentElement.getAttribute('data-theme');
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
-  }
+        function runAnimation() {
+            animationSequence.forEach(item => {
+                setTimeout(() => {
+                    // Activate node
+                    const node = document.querySelector(`[data-node="${item.node}"]`);
+                    if (node) {
+                        node.classList.add('active');
+                    }
+                    
+                    // Activate connection line and label
+                    if (item.connection) {
+                        const line = document.querySelector(`[data-connection="${item.connection}"]`);
+                        const label = document.querySelector(`[data-label="${item.connection}"]`);
+                        
+                        if (line) {
+                            setTimeout(() => line.classList.add('active'), 200);
+                        }
+                        if (label) {
+                            setTimeout(() => label.classList.add('active'), 400);
+                        }
+                    }
+                }, item.delay);
+            });
+        }
 
-  function updateThemeIcon(theme) {
-    const icon = document.querySelector('.theme-icon');
-    icon.textContent = theme === 'light' ? '🌙' : '☀️';
-  }
-</script>
+        function resetAnimation() {
+            // Remove all active classes
+            nodes.forEach(node => node.classList.remove('active'));
+            const lines = document.querySelectorAll('.svg-line');
+            lines.forEach(line => line.classList.remove('active'));
+            const labels = document.querySelectorAll('.label');
+            labels.forEach(label => label.classList.remove('active'));
+            
+            // Restart animation
+            setTimeout(runAnimation, 100);
+        }
+
+        // Theme toggle
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        function toggleTheme() {
+            const theme = document.documentElement.getAttribute('data-theme');
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('.theme-icon');
+            icon.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createSVGLines();
+            setTimeout(runAnimation, 500);
+        });
+
+        // Recreate lines on resize
+        window.addEventListener('resize', () => {
+            svgContainer.innerHTML = '';
+            // Remove old labels
+            const oldLabels = document.querySelectorAll('.label');
+            oldLabels.forEach(label => label.remove());
+            createSVGLines();
+        });
+    </script>
 </body>
 </html>
