@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Implikasi – Sistem Pakar Penyakit Mata</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">
+    <img src="assets/logo kelas.jpg" alt="Logo Sistem Pakar">
+    <h2>Sistem Pakar<br><span>Diagnosa Penyakit Mata</span></h2>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="diagnosa.html">Diagnosa</a>
+    <a href="about.html">About</a>
+    <a href="diagram-tree.html">Diagram Tree</a>
+    <a href="implikasi.html" class="active">Implikasi</a>
+  </nav>
+</header>
+
+<section class="diagnosa-layout">
+
+  <div class="diagnosa-image">
+    <img src="assets/oi.jpg" alt="Implikasi Sistem Pakar">
+  </div>
+
+  <section class="diagnosa-question">
+    <h2>Implikasi Penerapan Sistem Pakar Diagnosa Penyakit Mata</h2>
+  </section>
+
+  <div class="diagnosa-info">
+    <h1>Implikasi Teknis</h1>
+    <p>
+      Penerapan metode <strong>Forward Chaining</strong> pada sistem pakar ini
+      menghasilkan proses inferensi yang bersifat deterministik dan transparan,
+      di mana setiap keputusan diagnosis dapat ditelusuri berdasarkan aturan
+      yang telah ditetapkan oleh pakar.
+    </p>
+    <ul class="diagnosa-list">
+      <li>Sistem mudah dikembangkan dengan penambahan aturan baru</li>
+      <li>Proses penalaran berjalan secara sistematis dari gejala ke diagnosis</li>
+      <li>Ketergantungan tinggi pada kelengkapan basis pengetahuan</li>
+      <li>Kompleksitas meningkat seiring bertambahnya jumlah aturan</li>
+    </ul>
+  </div>
+
+  <div class="diagnosa-info">
+    <h1>Implikasi bagi Pengguna</h1>
+    <p>
+      Sistem ini memberikan manfaat sebagai alat bantu skrining awal bagi
+      pengguna dalam mengenali kemungkinan penyakit mata berdasarkan gejala
+      yang dialami sebelum melakukan pemeriksaan langsung ke tenaga medis.
+    </p>
+    <ul class="diagnosa-list">
+      <li>Membantu pengguna memahami kondisi awal gangguan penglihatan</li>
+      <li>Mengurangi keterlambatan dalam pengambilan keputusan medis</li>
+      <li>Berpotensi terjadi kesalahan diagnosis jika input gejala tidak akurat</li>
+      <li>Sistem tidak menggantikan peran dokter spesialis mata</li>
+    </ul>
+  </div>
+
+  <div class="diagnosa-info">
+    <h1>Implikasi bagi Tenaga Medis dan Institusi</h1>
+    <p>
+      Dari sudut pandang tenaga medis dan institusi kesehatan, sistem ini dapat
+      dimanfaatkan sebagai media edukasi dan pendukung pengambilan keputusan
+      awal, khususnya di daerah dengan keterbatasan akses layanan kesehatan mata.
+    </p>
+    <ul class="diagnosa-list">
+      <li>Digunakan sebagai alat bantu edukasi pasien</li>
+      <li>Mendukung pelayanan kesehatan di wilayah terpencil</li>
+      <li>Memerlukan validasi dan pembaruan aturan secara berkala</li>
+      <li>Tidak dapat dijadikan dasar diagnosis klinis resmi</li>
+    </ul>
+  </div>
+
+  <div class="diagnosa-info">
+    <h1>Implikasi Metodologis</h1>
+    <p>
+      Pemilihan metode Forward Chaining menunjukkan bahwa sistem ini lebih
+      sesuai untuk kasus diagnosis berbasis gejala yang bersifat pasti,
+      namun memiliki keterbatasan dalam menangani ketidakpastian.
+    </p>
+    <ul class="diagnosa-list">
+      <li>Cocok untuk sistem berbasis aturan deterministik</li>
+      <li>Kurang efektif untuk kasus multi-diagnosis kompleks</li>
+      <li>Dapat dikombinasikan dengan Certainty Factor atau Fuzzy Logic</li>
+      <li>Membutuhkan struktur rule yang jelas dan tidak ambigu</li>
+    </ul>
+  </div>
+
+  <section class="diagnosa-results">
+    <h2>Implikasi terhadap Pengembangan Sistem</h2>
+    <div class="result-cards">
+
+      <div class="result-card">
+        <img src="assets/pengembangan-ai.jpg" alt="Pengembangan AI">
+        <h3>Integrasi AI</h3>
+        <p>Sistem dapat dikembangkan dengan pendekatan AI atau machine learning
+        untuk meningkatkan akurasi diagnosis.</p>
+      </div>
+
+      <div class="result-card">
+        <img src="assets/validasi-pakar.jpg" alt="Validasi Pakar">
+        <h3>Validasi Pakar</h3>
+        <p>Diperlukan keterlibatan pakar medis secara berkelanjutan untuk menjaga
+        keakuratan basis pengetahuan.</p>
+      </div>
+
+      <div class="result-card">
+        <img src="assets/skala-sistem.jpg" alt="Skalabilitas Sistem">
+        <h3>Skalabilitas</h3>
+        <p>Peningkatan jumlah penyakit dan gejala menuntut optimasi struktur rule
+        agar performa sistem tetap stabil.</p>
+      </div>
+
+    </div>
+  </section>
+
+</section>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+  <span class="theme-icon">🌙</span>
+</button>
+
+<script>
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+
+  function toggleTheme() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  }
+
+  function updateThemeIcon(theme) {
+    document.querySelector('.theme-icon').textContent =
+      theme === 'light' ? '🌙' : '☀️';
+  }
+</script>
+
+</body>
+</html>
