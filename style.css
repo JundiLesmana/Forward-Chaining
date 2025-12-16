@@ -105,6 +105,18 @@ body {
   align-items: center;
   gap: 1rem;
 }
+.logo img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
 
 .logo-box {
   width: 45px;
