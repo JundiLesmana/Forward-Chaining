@@ -1,5 +1,5 @@
 # 🩺 Sistem Pakar Diagnosa Penyakit Mata Berbasis Web  
-### Menggunakan Metode **Forward Chaining**
+### Penerapan Metode **Forward Chaining**
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
@@ -7,44 +7,90 @@
 
 ---
 
-## 📌 Deskripsi Proyek
+## 👥 Informasi Kelompok
 
-Proyek ini merupakan implementasi dari penelitian berjudul **“Implementasi Metode Forward Chaining Untuk Mendiagnosis Penyakit Mata Berbasis Web”** oleh **Eri Sasmita Susanto & Anggia Purbadhanti** (Universitas Teknologi Sumbawa, 2023), yang dipublikasikan dalam jurnal *Digital Transformation Technology (Digitech)*, Vol. 3, No. 2, hlm. 362–370 ([DOI: 10.47709/digitech.v3i2.2551](https://doi.org/10.47709/digitech.v3i2.2551)).
+**Mata Kuliah** : Logika Informatika  
+**Jenis Tugas** : Penerapan Metode Forward Chaining  
+**Kelompok** : Arif  
 
-Sistem ini dirancang untuk membantu masyarakat **mengenali gejala awal penyakit mata**, khususnya **penurunan penglihatan tanpa disertai mata merah**, melalui pendekatan **sistem pakar berbasis aturan** menggunakan metode **Forward Chaining**. Tujuannya adalah meminimalkan biaya dan waktu konsultasi langsung ke klinik, sekaligus memberikan edukasi awal mengenai kemungkinan diagnosis.
-
----
-
-## 🔍 Fitur Utama
-
-- ✅ Antarmuka web berbasis HTML, CSS, dan JavaScript  
-- ✅ Tampilan gelap/terang (*dark/light mode*) dengan penyimpanan preferensi  
-- ✅ Halaman **About** berisi profil tim pengembang  
-- ✅ Contoh halaman diagnosis (misal: `P06.html` → **Katarak Sekunder**)  
-- ✅ Representasi aturan logika IF-THEN (`G10.html`)  
-- ✅ Visualisasi konsep sistem pakar berdasarkan jurnal asli
-
-> ⚠️ **Catatan**: Implementasi *forward chaining* saat ini bersifat **statis (contoh kasus)** sesuai struktur file yang tersedia. Untuk sistem dinamis penuh, diperlukan pengembangan lebih lanjut (misalnya dengan JavaScript atau backend PHP seperti pada jurnal).
+### Anggota Kelompok
+- **JUNDULLOH RIZKI ANANDA** – Ketua Kelompok  
+- **ADITTIA RAMADHAN** – Anggota  
+- **ALIF MAS SASTRO NUGROHO** – Anggota  
+- **ARIF RAHMAN HAKIM** – Anggota  
+- **SUPRIYAN** – Anggota  
 
 ---
 
-## 🧠 Dasar Logika: Forward Chaining
+## 📘 Latar Belakang
 
-Metode *Forward Chaining* dimulai dari **fakta/gejala yang diketahui**, lalu mencocokkannya dengan **aturan IF-THEN** dalam basis pengetahuan untuk menghasilkan **kesimpulan/diagnosis**.
+Kesehatan mata merupakan aspek penting dalam kualitas hidup manusia. Namun, keterbatasan akses terhadap dokter spesialis mata, terutama di daerah tertentu, sering menyebabkan keterlambatan diagnosis penyakit mata. Oleh karena itu, diperlukan sebuah sistem yang dapat membantu memberikan **diagnosis awal secara cepat dan sistematis**.
 
-### Data dari Jurnal:
-- **14 jenis penyakit mata**, di antaranya:
-  - `P001`: Katarak Kongenital  
-  - `P006`: Katarak Sekunder  
-  - `P007`: Glaukoma Primer  
-  - `P011`: Retinopati Diabetes Melitus  
-- **32 gejala klinis**, contoh:
-  - `G001`: Penglihatan turun perlahan tanpa mata merah  
-  - `G005`: Pandangan ganda pada objek yang sama  
-  - `G010`: Tidak jelas dalam menginterpretasikan warna  
-  - `G028`: Ukuran kacamata minus yang berubah  
+Proyek ini merupakan implementasi **tugas mata kuliah Logika Informatika** yang menerapkan konsep **Sistem Pakar** dengan metode **Forward Chaining** dalam bentuk **aplikasi berbasis web**.
 
-### Contoh Aturan (dari Tabel 3 jurnal):
+---
+
+## 📄 Dasar Penelitian (Jurnal Acuan)
+
+Sistem ini mengacu pada jurnal ilmiah berikut:
+
+> **Eri Sasmita Susanto & Anggia Purbadhanti (2023)**  
+> *Implementasi Metode Forward Chaining Untuk Mendiagnosis Penyakit Mata Berbasis Web*  
+> Jurnal **Digital Transformation Technology (Digitech)**  
+> Vol. 3, No. 2, Hal. 362–370  
+> DOI: https://doi.org/10.47709/digitech.v3i2.2551  
+
+Penelitian tersebut membahas penerapan metode **Forward Chaining** untuk mendiagnosis penyakit mata berdasarkan **gejala klinis**, khususnya pada kasus **penurunan penglihatan tanpa disertai mata merah**.
+
+---
+
+## 🎯 Tujuan Sistem
+
+- Menerapkan konsep **forward chaining** dalam bentuk sistem pakar
+- Membantu pengguna mengenali **kemungkinan penyakit mata secara dini**
+- Memberikan **edukasi awal** sebelum pemeriksaan medis lanjutan
+- Menjadi media pembelajaran penerapan logika IF–THEN dalam informatika
+
+---
+
+## 🧠 Konsep Forward Chaining
+
+Metode **Forward Chaining** adalah teknik inferensi yang dimulai dari **fakta atau gejala awal**, kemudian mencocokkannya dengan **aturan (rules)** dalam basis pengetahuan hingga menghasilkan **kesimpulan (diagnosis)**.
+
+Alur logika sistem:
+1. Pengguna memilih atau menjawab gejala
+2. Sistem mencocokkan gejala dengan aturan IF–THEN
+3. Jika kondisi terpenuhi, sistem menarik kesimpulan berupa diagnosis penyakit
+
+---
+
+## 📊 Data Pengetahuan (berdasarkan jurnal)
+
+### 🦠 Jenis Penyakit Mata
+Sistem ini mengacu pada **14 jenis penyakit mata**, di antaranya:
+- **P001**: Katarak Kongenital  
+- **P005**: Katarak Toksik  
+- **P006**: Katarak Sekunder  
+- **P007**: Glaukoma Primer  
+- **P011**: Retinopati Diabetes Melitus  
+- **P012**: Retinopati Diabetes Proliferatif  
+
+### 👁️ Gejala Klinis
+Terdapat **32 gejala**, contoh:
+- **G001**: Penglihatan turun perlahan tanpa mata merah  
+- **G004**: Kemampuan penglihatan berkurang  
+- **G005**: Pandangan ganda pada objek yang sama  
+- **G010**: Kesulitan membedakan warna  
+- **G015**: Kekeruhan pada lensa mata
+- **G028**: Ukuran kacamata minus sering berubah  
+
+---
+
+## 🔗 Contoh Aturan (Rule IF–THEN)
+
+Contoh aturan forward chaining yang digunakan:
+
 ```text
-R5: IF G001 AND G015 THEN P005 (Katarak Toksik)
-R6: IF G001 AND G005 AND G010 AND G028 THEN P006 (Katarak Sekunder)
+Responden 5   : IF G001 AND G015 THEN P005 (Katarak Toksik)
+Responden 6   : IF G001 AND G005 AND G010 AND G028 THEN P006 (Katarak Sekunder)
+Responden 12  : IF G01 AND G15 AND G04 AND G14 THEN P012 (Retinopati Diabetes Proliferatif)
